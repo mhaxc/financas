@@ -1,18 +1,17 @@
 <?php
-include __DIR__.'vendor/autoload.php';
+include_once __DIR__.'/vendor/autoload.php';
 
 $db = include __DIR__.'/config/db.php';
 list(
     'driver'=>$adapter,
-    'host'=> $host,
-    'database'=> $name,
-    'user'=> $user,
+    'host'=>$host,
+    'database'=>$name,
+    'username'=>$user,
     'password'=>$pass,
     'charset'=>$charset,
-    'collation'=>$colletion,
+    'collation'=>$colletion
 
     ) = $db['development'];
-
 return [
     'paths'=>[
         'migrations'=>[
@@ -35,5 +34,8 @@ return [
             'collation'=>$colletion
         ]
 
-    ]
+
+
+
+   ]
 ];

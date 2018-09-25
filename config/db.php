@@ -1,14 +1,14 @@
 <?php
-return[
-    'development'=> [
-    'drive'=>'mysql',
+return array(
+    'development'=> array(
+    'driver'=>'mysql',
     'host'=>'localhost',
     'database'=>'financas',
     'username'=>'root',
     'password'=>'',
     'charset'=>'utf8',
     'collation'=>'utf8_unicode_ci'
-    ]
+    )
 
 
-];
+);
