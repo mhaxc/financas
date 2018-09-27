@@ -5,12 +5,8 @@ namespace SONFin\Plugins;
 use Aura\Router\RouterContainer;
 use Interop\Container\ContainerInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use SONFin\ServiceContainerInterface;
-use Zend\Diactoros\Server;
 use Zend\Diactoros\ServerRequestFactory;
-use SONFin\Plugins\PluginInterface;
-
 
 class RoutePlugin implements PluginInterface
 {
@@ -38,11 +34,8 @@ class RoutePlugin implements PluginInterface
     }
 
     protected function getRequest():RequestInterface
-    { ServerRequestFactory::fromGlobals(
-        $_SERVER,$_GET,$_POST,$_COOKIE,$_FILES
-    );
-
-
+    {
+         return ServerRequestFactory::fromGlobals($_SERVER,$_GET,$_POST,$_COOKIE,$_FILES);
     }
 
 }

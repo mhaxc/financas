@@ -51,8 +51,10 @@ class Application{
 
     public function start()
     {
-        $route=$this->service('route');
-        $callable=$route->handle;
+        $route = $this->service('route');
+
+        $callable = $route->handler;
+
         $callable();
 
     }
