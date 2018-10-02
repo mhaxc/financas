@@ -32,6 +32,7 @@ class ContainerCommandLoaderTest extends TestCase
 
     public function testGet()
     {
+        /** @noinspection PhpParamsInspection */
         $loader = new ContainerCommandLoader(new ServiceLocator(array(
             'foo-service' => function () { return new Command('foo'); },
             'bar-service' => function () { return new Command('bar'); },
@@ -46,6 +47,7 @@ class ContainerCommandLoaderTest extends TestCase
      */
     public function testGetUnknownCommandThrows()
     {
+        /** @noinspection PhpParamsInspection */
         (new ContainerCommandLoader(new ServiceLocator(array()), array()))->get('unknown');
     }
 

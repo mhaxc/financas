@@ -54,6 +54,7 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
     public function testServicesShouldBeDifferent()
     {
         $pimple = new Container();
+        /** @noinspection PhpParamsInspection */
         $pimple['service'] = $pimple->factory(function () {
             return new Fixtures\Service();
         });
@@ -184,6 +185,7 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
     public function testRaw()
     {
         $pimple = new Container();
+        /** @noinspection PhpParamsInspection */
         $pimple['service'] = $definition = $pimple->factory(function () { return 'foo'; });
         $this->assertSame($definition, $pimple->raw('service'));
     }
@@ -231,6 +233,7 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
         $pimple['shared_service'] = function () {
             return new Fixtures\Service();
         };
+        /** @noinspection PhpParamsInspection */
         $pimple['factory_service'] = $pimple->factory(function () {
             return new Fixtures\Service();
         });
@@ -260,6 +263,7 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
         $pimple = new Container();
 
         $pimple['foo'] = $pimple->factory(function () { return; });
+        /** @noinspection PhpParamsInspection */
         $pimple['foo'] = $pimple->extend('foo', function ($foo, $pimple) { return; });
         unset($pimple['foo']);
 
@@ -279,6 +283,7 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
     public function testExtendValidatesKeyIsPresent()
     {
         $pimple = new Container();
+        /** @noinspection PhpParamsInspection */
         $pimple->extend('foo', function () {});
     }
 
@@ -388,6 +393,7 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
     {
         $pimple = new Container();
         $pimple['foo'] = $service;
+        /** @noinspection PhpParamsInspection */
         $pimple->extend('foo', function () {});
     }
 
@@ -402,6 +408,7 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
             return 'bar';
         });
 
+        /** @noinspection PhpParamsInspection */
         $pimple->extend('foo', function ($value) {
             return $value.'-baz';
         });
@@ -446,6 +453,7 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
         };
         $foo = $pimple['foo'];
 
+        /** @noinspection PhpParamsInspection */
         $pimple->extend('foo', function () {});
     }
 
@@ -461,6 +469,7 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
         };
         $foo = $pimple['foo'];
 
+        /** @noinspection PhpParamsInspection */
         $pimple->extend('foo', function () {});
     }
 
@@ -564,6 +573,7 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
         $pimple['foo'] = $pimple->extend('foo', function ($foo, $app) {
             return "$foo.bar";
         });
+        /** @noinspection PhpParamsInspection */
         $pimple['foo'] = $pimple->extend('foo', function ($foo, $app) {
             return "$foo.baz";
         });

@@ -941,6 +941,7 @@ class ApplicationTest extends TestCase
 
         $application->getDefinition()->addOption(new InputOption('--env', '-e', InputOption::VALUE_REQUIRED, 'Environment'));
 
+        /** @noinspection PhpParamsInspection */
         $application
             ->register('foo')
             ->setAliases(array('f'))
@@ -963,6 +964,7 @@ class ApplicationTest extends TestCase
         $application = new Application();
         $application->setAutoExit(false);
         $application->setCatchExceptions(false);
+        /** @noinspection PhpParamsInspection */
         $application
             ->register('foo')
             ->setDefinition(array($def))
@@ -1155,6 +1157,7 @@ class ApplicationTest extends TestCase
         $application->setDispatcher($dispatcher);
         $application->setAutoExit(false);
 
+        /** @noinspection PhpParamsInspection */
         $application->register('foo')->setCode(function (InputInterface $input, OutputInterface $output) {
             $output->write('foo.');
         });
@@ -1226,6 +1229,7 @@ class ApplicationTest extends TestCase
         });
 
         $application = new Application();
+        /** @noinspection PhpParamsInspection */
         $application->setDispatcher($dispatcher);
         $application->setAutoExit(false);
 
@@ -1252,6 +1256,7 @@ class ApplicationTest extends TestCase
         $application->setDispatcher($dispatcher);
         $application->setAutoExit(false);
 
+        /** @noinspection PhpParamsInspection */
         $application->register('foo')->setCode(function (InputInterface $input, OutputInterface $output) {
             throw new \RuntimeException('foo');
         });
@@ -1270,6 +1275,7 @@ class ApplicationTest extends TestCase
         $application = new Application();
         $application->setAutoExit(false);
         $application->setCatchExceptions(false);
+        /** @noinspection PhpParamsInspection */
         $application->setDispatcher(new EventDispatcher());
 
         $application->register('dym')->setCode(function (InputInterface $input, OutputInterface $output) {
@@ -1318,6 +1324,7 @@ class ApplicationTest extends TestCase
         $application->setDispatcher($this->getDispatcher());
         $application->setAutoExit(false);
 
+        /** @noinspection PhpParamsInspection */
         $application->register('dym')->setCode(function (InputInterface $input, OutputInterface $output) {
             $output->write('dym.');
 
@@ -1338,6 +1345,7 @@ class ApplicationTest extends TestCase
         $application->setDispatcher($this->getDispatcher());
         $application->setAutoExit(false);
 
+        /** @noinspection PhpParamsInspection */
         $application->register('dus')->setCode(function (InputInterface $input, OutputInterface $output) {
             $output->write('dus.');
 
@@ -1412,6 +1420,7 @@ class ApplicationTest extends TestCase
         $application->setDispatcher($dispatcher);
         $application->setAutoExit(false);
 
+        /** @noinspection PhpParamsInspection */
         $application->register('foo')->setCode(function (InputInterface $input, OutputInterface $output) {
             $output->write('foo.');
         });
@@ -1599,6 +1608,7 @@ class ApplicationTest extends TestCase
     {
         $application = new Application();
         $application->setAutoExit(false);
+        /** @noinspection PhpParamsInspection */
         $application->setDispatcher(new EventDispatcher());
 
         $application->register('dym')->setCode(function (InputInterface $input, OutputInterface $output) {

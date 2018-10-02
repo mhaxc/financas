@@ -38,6 +38,7 @@ class UndefinedMethodFatalErrorHandler implements FatalErrorHandlerInterface
 
         if (!class_exists($className) || null === $methods = get_class_methods($className)) {
             // failed to get the class or its methods on which an unknown method was called (for example on an anonymous class)
+            /** @noinspection PhpParamsInspection */
             return new UndefinedMethodException($message, $exception);
         }
 
@@ -61,6 +62,7 @@ class UndefinedMethodFatalErrorHandler implements FatalErrorHandlerInterface
             $message .= "\nDid you mean to call ".$candidates;
         }
 
+        /** @noinspection PhpParamsInspection */
         return new UndefinedMethodException($message, $exception);
     }
 }

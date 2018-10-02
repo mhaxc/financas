@@ -47,6 +47,7 @@ class PimpleServiceProvider implements ServiceProviderInterface
             return new Service();
         };
 
+        /** @noinspection PhpParamsInspection */
         $pimple['factory'] = $pimple->factory(function () {
             return new Service();
         });

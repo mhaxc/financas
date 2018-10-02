@@ -34,6 +34,7 @@ class FlattenExceptionTest extends TestCase
 {
     public function testStatusCode()
     {
+        /** @noinspection PhpParamsInspection */
         $flattened = FlattenException::create(new \RuntimeException(), 403);
         $this->assertEquals('403', $flattened->getStatusCode());
 
@@ -49,6 +50,7 @@ class FlattenExceptionTest extends TestCase
         $flattened = FlattenException::create(new NotFoundHttpException());
         $this->assertEquals('404', $flattened->getStatusCode());
 
+        /** @noinspection PhpParamsInspection */
         $flattened = FlattenException::create(new UnauthorizedHttpException('Basic realm="My Realm"'));
         $this->assertEquals('401', $flattened->getStatusCode());
 
@@ -61,24 +63,30 @@ class FlattenExceptionTest extends TestCase
         $flattened = FlattenException::create(new ConflictHttpException());
         $this->assertEquals('409', $flattened->getStatusCode());
 
+        /** @noinspection PhpParamsInspection */
         $flattened = FlattenException::create(new MethodNotAllowedHttpException(array('POST')));
         $this->assertEquals('405', $flattened->getStatusCode());
 
         $flattened = FlattenException::create(new AccessDeniedHttpException());
         $this->assertEquals('403', $flattened->getStatusCode());
 
+        /** @noinspection PhpParamsInspection */
         $flattened = FlattenException::create(new GoneHttpException());
         $this->assertEquals('410', $flattened->getStatusCode());
 
+        /** @noinspection PhpParamsInspection */
         $flattened = FlattenException::create(new LengthRequiredHttpException());
         $this->assertEquals('411', $flattened->getStatusCode());
 
+        /** @noinspection PhpParamsInspection */
         $flattened = FlattenException::create(new PreconditionFailedHttpException());
         $this->assertEquals('412', $flattened->getStatusCode());
 
+        /** @noinspection PhpParamsInspection */
         $flattened = FlattenException::create(new PreconditionRequiredHttpException());
         $this->assertEquals('428', $flattened->getStatusCode());
 
+        /** @noinspection PhpParamsInspection */
         $flattened = FlattenException::create(new ServiceUnavailableHttpException());
         $this->assertEquals('503', $flattened->getStatusCode());
 
@@ -89,6 +97,7 @@ class FlattenExceptionTest extends TestCase
         $this->assertEquals('415', $flattened->getStatusCode());
 
         if (class_exists(SuspiciousOperationException::class)) {
+            /** @noinspection PhpParamsInspection */
             $flattened = FlattenException::create(new SuspiciousOperationException());
             $this->assertEquals('400', $flattened->getStatusCode());
         }
@@ -96,21 +105,25 @@ class FlattenExceptionTest extends TestCase
 
     public function testHeadersForHttpException()
     {
+        /** @noinspection PhpParamsInspection */
         $flattened = FlattenException::create(new MethodNotAllowedHttpException(array('POST')));
         $this->assertEquals(array('Allow' => 'POST'), $flattened->getHeaders());
 
         $flattened = FlattenException::create(new UnauthorizedHttpException('Basic realm="My Realm"'));
         $this->assertEquals(array('WWW-Authenticate' => 'Basic realm="My Realm"'), $flattened->getHeaders());
 
+        /** @noinspection PhpParamsInspection */
         $flattened = FlattenException::create(new ServiceUnavailableHttpException('Fri, 31 Dec 1999 23:59:59 GMT'));
         $this->assertEquals(array('Retry-After' => 'Fri, 31 Dec 1999 23:59:59 GMT'), $flattened->getHeaders());
 
+        /** @noinspection PhpParamsInspection */
         $flattened = FlattenException::create(new ServiceUnavailableHttpException(120));
         $this->assertEquals(array('Retry-After' => 120), $flattened->getHeaders());
 
         $flattened = FlattenException::create(new TooManyRequestsHttpException('Fri, 31 Dec 1999 23:59:59 GMT'));
         $this->assertEquals(array('Retry-After' => 'Fri, 31 Dec 1999 23:59:59 GMT'), $flattened->getHeaders());
 
+        /** @noinspection PhpParamsInspection */
         $flattened = FlattenException::create(new TooManyRequestsHttpException(120));
         $this->assertEquals(array('Retry-After' => 120), $flattened->getHeaders());
     }
@@ -133,6 +146,7 @@ class FlattenExceptionTest extends TestCase
     public function testWrappedThrowable()
     {
         $exception = new FatalThrowableError(new \DivisionByZeroError('Ouch', 42));
+        /** @noinspection PhpParamsInspection */
         $flattened = FlattenException::create($exception);
 
         $this->assertSame('Ouch', $flattened->getMessage(), 'The message is copied from the original error.');
@@ -143,6 +157,7 @@ class FlattenExceptionTest extends TestCase
     public function testThrowable()
     {
         $error = new \DivisionByZeroError('Ouch', 42);
+        /** @noinspection PhpParamsInspection */
         $flattened = FlattenException::createFromThrowable($error);
 
         $this->assertSame('Ouch', $flattened->getMessage(), 'The message is copied from the original error.');
@@ -221,6 +236,8 @@ class FlattenExceptionTest extends TestCase
             new \RuntimeException('previous', 123)
         );
 
+        /** @noinspection PhpParamsInspection */
+        /** @noinspection PhpParamsInspection */
         $this->assertSame(
             FlattenException::createFromThrowable($exception)->toArray(),
             FlattenException::create($exception)->toArray()

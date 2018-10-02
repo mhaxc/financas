@@ -45,6 +45,7 @@ class ExceptionHandlerTest extends TestCase
         $handler = new ExceptionHandler(true);
 
         ob_start();
+        /** @noinspection PhpParamsInspection */
         $handler->sendPhpResponse(new \RuntimeException('Foo'));
         $response = ob_get_clean();
 
@@ -57,6 +58,7 @@ class ExceptionHandlerTest extends TestCase
         $handler = new ExceptionHandler(false, 'iso8859-1');
 
         ob_start();
+        /** @noinspection PhpParamsInspection */
         $handler->sendPhpResponse(new NotFoundHttpException('Foo'));
         $response = ob_get_clean();
 
@@ -91,6 +93,7 @@ class ExceptionHandlerTest extends TestCase
     {
         $handler = new ExceptionHandler(true);
         ob_start();
+        /** @noinspection PhpParamsInspection */
         $handler->sendPhpResponse(new \RuntimeException('Foo', 0, new \RuntimeException('Bar')));
         $response = ob_get_clean();
 

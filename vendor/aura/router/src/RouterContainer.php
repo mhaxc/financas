@@ -260,6 +260,7 @@ class RouterContainer
     public function getMatcher()
     {
         if (! $this->matcher) {
+            /** @noinspection PhpParamsInspection */
             $this->matcher = new Matcher(
                 $this->getMap(),
                 $this->getLogger(),

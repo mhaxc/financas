@@ -79,6 +79,7 @@ class UndefinedFunctionFatalErrorHandler implements FatalErrorHandlerInterface
             $message .= "\nDid you mean to call ".$candidates;
         }
 
+        /** @noinspection PhpParamsInspection */
         return new UndefinedFunctionException($message, $exception);
     }
 }

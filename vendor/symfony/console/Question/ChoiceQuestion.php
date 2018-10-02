@@ -40,6 +40,7 @@ class ChoiceQuestion extends Question
 
         $this->choices = $choices;
         $this->setValidator($this->getDefaultValidator());
+        /** @noinspection PhpParamsInspection */
         $this->setAutocompleterValues($choices);
     }
 

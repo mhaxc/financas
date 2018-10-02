@@ -551,6 +551,7 @@ class Application
         if (empty($namespaces)) {
             $message = sprintf('There are no commands defined in the "%s" namespace.', $namespace);
 
+            /** @noinspection PhpParamsInspection */
             if ($alternatives = $this->findAlternatives($namespace, $allNamespaces)) {
                 if (1 == \count($alternatives)) {
                     $message .= "\n\nDid you mean this?\n    ";
@@ -978,6 +979,7 @@ class Application
                     $e = $event->getException();
                 }
             }
+            /** @noinspection PhpParamsInspection */
             $event = new ConsoleErrorEvent($input, $output, $e, $command);
             $this->dispatcher->dispatch(ConsoleEvents::ERROR, $event);
             $e = $event->getError();

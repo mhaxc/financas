@@ -194,6 +194,7 @@ class QuestionHelperTest extends AbstractQuestionHelperTest
 
         $question = new Question('');
         $expectedCompletion = 'ExampleNamespace\\';
+        /** @noinspection PhpParamsInspection */
         $question->setAutocompleterValues(array($expectedCompletion));
 
         $output = $this->createOutputInterface();
@@ -899,6 +900,7 @@ class QuestionHelperTest extends AbstractQuestionHelperTest
         $dialog->setHelperSet($helperSet);
 
         $question = new Question('Please select a bundle', 'FrameworkBundle');
+        /** @noinspection PhpParamsInspection */
         $question->setAutocompleterValues(new AutocompleteValues(array('irrelevant' => 'AcmeDemoBundle', 'AsseticBundle', 'SecurityBundle', 'FooBundle')));
 
         $this->assertEquals('AcmeDemoBundle', $dialog->ask($this->createStreamableInputInterfaceMock($inputStream), $this->createOutputInterface(), $question));

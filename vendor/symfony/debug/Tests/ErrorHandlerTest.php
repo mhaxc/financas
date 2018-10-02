@@ -483,6 +483,7 @@ class ErrorHandlerTest extends TestCase
             $args = \func_get_args();
         });
 
+        /** @noinspection PhpParamsInspection */
         $handler->handleException($exception);
 
         $this->assertInstanceOf('Symfony\Component\Debug\Exception\ClassNotFoundException', $args[0]);

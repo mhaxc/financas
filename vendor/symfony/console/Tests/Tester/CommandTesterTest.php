@@ -77,6 +77,7 @@ class CommandTesterTest extends TestCase
         $application->setAutoExit(false);
 
         $command = new Command('foo');
+        /** @noinspection PhpParamsInspection */
         $command->setCode(function ($input, $output) { $output->writeln('foo'); });
 
         $application->add($command);

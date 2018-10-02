@@ -38,6 +38,7 @@ class ErrorListenerTest extends TestCase
         ;
 
         $listener = new ErrorListener($logger);
+        /** @noinspection PhpParamsInspection */
         $listener->onConsoleError(new ConsoleErrorEvent(new ArgvInput(array('console.php', 'test:run', '--foo=baz', 'buzz')), $this->getOutput(), $error, new Command('test:run')));
     }
 

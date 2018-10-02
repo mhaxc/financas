@@ -656,6 +656,7 @@ class ProgressBarTest extends TestCase
         putenv('COLUMNS=156');
 
         $bar = new ProgressBar($output = $this->getOutputStream(), 15);
+        /** @noinspection PhpParamsInspection */
         ProgressBar::setPlaceholderFormatterDefinition('memory', function (ProgressBar $bar) {
             static $i = 0;
             $mem = 100000 * $i;

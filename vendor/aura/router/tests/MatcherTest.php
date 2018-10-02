@@ -215,6 +215,7 @@ class MatcherTest extends \PHPUnit_Framework_TestCase
     public function testLogger()
     {
         $container = new RouterContainer();
+        /** @noinspection PhpParamsInspection */
         $container->setLoggerFactory(function () {
             return new FakeLogger();
         });

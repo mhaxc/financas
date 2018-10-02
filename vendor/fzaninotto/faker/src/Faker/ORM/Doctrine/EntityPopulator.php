@@ -106,6 +106,7 @@ class EntityPopulator
                 $formatters[$fieldName] = $formatter;
                 continue;
             }
+            /** @noinspection PhpParamsInspection */
             if ($formatter = $columnTypeGuesser->guessFormat($fieldName, $this->class)) {
                 $formatters[$fieldName] = $formatter;
                 continue;
@@ -172,6 +173,7 @@ class EntityPopulator
         if ($generateId) {
             $idsName = $this->class->getIdentifier();
             foreach ($idsName as $idName) {
+                /** @noinspection PhpParamsInspection */
                 $id = $this->generateId($obj, $idName, $manager);
                 $this->class->reflFields[$idName]->setValue($obj, $id);
             }
