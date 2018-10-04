@@ -9,7 +9,12 @@
 namespace SONFin\Models;
 
 
-class CategoryCost
+use Illuminate\Database\Eloquent\Model;
+
+class CategoryCost extends Model
 {
+
+
+
 
 }

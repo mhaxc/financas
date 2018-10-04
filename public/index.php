@@ -6,6 +6,7 @@ use SONFin\Application;
 use Psr\Http\Message\ServerRequestInterface;
 use SONFin\Plugins\RoutePlugin;
 use SONFin\Plugins\ViewPlugin;
+use SONFin\Plugins\DbPlugin;
 use SONFin\ServiceContainer;
 
 $serviceContainer = new ServiceContainer();
@@ -13,22 +14,31 @@ $app = new Application($serviceContainer);
 
 $app->plugin(new RoutePlugin());
 $app->plugin(new ViewPlugin());
+$app->plugin(new DbPlugin());
 
 //router
 
-$app->get('/',function(RequestInterface $request){
+$app->get('/',function(RequestInterface $request)use ($app){
+$view =$app->service('view.render');
+    return $view->render('test.html.twig',['name'=>'maxwel felipes da  silva']);
 
-
-
-    var_dump($request->getUri());die();
-    echo 'hello word';
 });
 
 $app->get('/home/{name}',function (ServerRequestInterface $request){
 $response=new \Zend\Diactoros\Response();
     $response->getBody()->write("response com emitter do diastor");
-    return $response;
+   return $response;
+});
 
+
+$app->get('/category-costs',function ()use ($app){
+  $view =$app->service('view.render');
+    $meuModel=new \SONFin\Models\CategoryCost();
+    $categories=$meuModel->all();
+
+    return $view->render('category-costs/list.html.twig',[
+        'categories'=>$categories
+    ]);
 });
 
 $app->start();
