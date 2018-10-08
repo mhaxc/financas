@@ -1,0 +1,29 @@
+
+{% extends 'layout.html.twig' %}
+{% block content %}
+<div class="container">
+    <div class="row"></div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title"></h3>
+         Nova  Categoria de  custo 
+    </div>
+    <div class="panel-body">
+       <form method="post" action="{{route('category-costs.store')}}">
+        <div class="form-group">
+       <label class="control-label">Nome</label>
+       
+       <input class="form-control" type="text" placehoder="nome" name="name"> 
+       
+       </div>    
+       <button type="submit" class=btn btn-primary>Salvar
+        <span class="glyphicon glyphicon-floppy-disk"></span>
+       </button>       
+       
+       </form>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

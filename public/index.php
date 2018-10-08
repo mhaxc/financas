@@ -8,6 +8,8 @@ use SONFin\Plugins\RoutePlugin;
 use SONFin\Plugins\ViewPlugin;
 use SONFin\Plugins\DbPlugin;
 use SONFin\ServiceContainer;
+use SONFin\ServiceContainerInterface;
+use SONFin\Models\CategoryCost;
 
 $serviceContainer = new ServiceContainer();
 $app = new Application($serviceContainer);
@@ -20,7 +22,7 @@ $app->plugin(new DbPlugin());
 
 $app->get('/',function(RequestInterface $request)use ($app){
 $view =$app->service('view.render');
-    return $view->render('test.html.twig',['name'=>'maxwel felipes da  silva']);
+    return $view->render('test.html.twig');
 
 });
 
@@ -31,14 +33,28 @@ $response=new \Zend\Diactoros\Response();
 });
 
 
-$app->get('/category-costs',function ()use ($app){
-  $view =$app->service('view.render');
-    $meuModel=new \SONFin\Models\CategoryCost();
-    $categories=$meuModel->all();
-
+$app
+->get('/category-costs',function ()use ($app){
+  $view = $app->service('view.render');
+    $meuModel = new \SONFin\Models\CategoryCost();
+    $categories = $meuModel->all();
     return $view->render('category-costs/list.html.twig',[
         'categories'=>$categories
-    ]);
-});
+    ],'category-costs.list');
+})
+
+
+->get('/category-costs/new',function ()use ($app){
+    $view = $app->service('view.render');
+
+      return $view->render('category-costs/create.html.twig');     
+  },'category-costs.new')
+ 
+ 
+  ->post('/category-costs/store',function (ServiceContainerInterface $request)use ($app){
+        $data =$request->getParsedBody();
+        \SONFin\Models\CategoryCost::create($data);
+        return $app->route('/category-costs.list');
+  },'category-costs.store');
 
 $app->start();
